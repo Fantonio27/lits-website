@@ -1,0 +1,24 @@
+.line {
+    margin-top: 2px;
+    width: 0px;
+    height: 2px;
+    transition: 0.3s ease-in;
+}
+
+.navbar-button:hover .line  {
+    width: 100%;
+    height: 2px;
+    background-color: #FEA71Aff;
+}
+
+.glass-background {
+    background: rgba( 27, 25, 25, 0.1 );
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
+}
+
+.navbar-active {
+    width: 100%;
+    height: 2px;
+    background-color: #FEA71Aff;
+}

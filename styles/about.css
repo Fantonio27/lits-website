@@ -1,0 +1,26 @@
+.about-image1 {
+    object-fit: cover;
+    height: 450px;
+    object-position: 45% 55%;
+}
+
+.about-divider{
+    margin-top: 2px;
+    height: 2px;
+    width: 40px;
+    background-color: #FEA71Aff;
+    border-radius: 20px;
+}
+
+.about-mission{
+    /* background:#000 url('../assets/about/ga0.jpg') ; */
+    /* background-image: url('../assets/about/ga0.jpg'); */
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+}
+
+

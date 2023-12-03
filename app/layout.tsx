@@ -18,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {/* <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"  /> */}
       <link rel="icon" href="/icon.png" sizes="any" />
+
       <body className='inter.className'>
         <Navbar />
         <Fade in={true} timeout={1000}>
@@ -28,6 +30,10 @@ export default function RootLayout({
             {children}
           </div>
         </Fade>
+        {/* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+          AOS.init();
+        </script> */}
       </body>
     </html>
   )

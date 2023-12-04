@@ -13,8 +13,6 @@
 }
 
 .about-mission{
-    /* background:#000 url('../assets/about/ga0.jpg') ; */
-    /* background-image: url('../assets/about/ga0.jpg'); */
     background-position: center;
     background-size: cover;
     display: flex;

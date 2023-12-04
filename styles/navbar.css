@@ -12,7 +12,7 @@
 }
 
 .glass-background {
-    background: rgba( 27, 25, 25, 0.1 );
+    /* background: #1c262f18; */
     backdrop-filter: blur( 5px );
     -webkit-backdrop-filter: blur( 5px );
 }

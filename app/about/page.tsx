@@ -26,10 +26,10 @@ const About = () => {
     }, [])
     return (
         <div className="mt-20">
-            <div className="" style={{'height' : '90vh'}}>
+            <div className="" style={{ 'height': '90vh' }} data-aos="zoom-in-up" data-aos-duration="800">
                 <div className="flex gap-5">
                     <div className="w-3/12">
-                        <h1 className="text-3xl cinzel tracking-wider">About Us</h1>
+                        <h1 className="text-3xl cinzel tracking-wider yellow">About Us</h1>
                         <div className="about-divider"></div>
                     </div>
                     <div className="w-9/12 leading-6">
@@ -49,7 +49,7 @@ const About = () => {
                 <div>
                     <div className="flex gap-10 items-center">
                         <div className="w-6/12 text-justify">
-                            <h1 className="text-3xl cinzel tracking-wider">History</h1>
+                            <h1 className="text-3xl cinzel tracking-wider yellow">History</h1>
                             <div className="about-divider"></div>
                             <p className="poppins mt-5 leading-7">The <span className="yellow">League of Information Technology Students </span> has a rich history that dates back to 2004. It was founded by a visionary, who is now a respected professor at the University of the East – Caloocan, Professor Jherold Valdoz. Recognizing the need for a platform that would cater to the unique needs of Information Technology students, Professor Valdoz took the initiative to establish the organization. Today, the <span className="yellow">League of Information Technology Students </span> stands as a testament to Professor Valdoz’s vision and dedication. It continues to strive for excellence, serving as a valuable resource for IT students at the University of the East – Caloocan and contributing to the broader IT community. The organization’s history is a source of pride for its members and serves as a reminder of its mission and values. It is a story of perseverance, innovation, and a relentless pursuit of excellence. It is a story that continues to be written with each passing year.</p>
                         </div>
@@ -64,7 +64,7 @@ const About = () => {
                 <div>
                     <center>
                         <Image src={logo} alt="lits" className=" w-24 h-24 object-cover mb-3" priority={true} ></Image>
-                        <h1 className="text-3xl cinzel tracking-wider text-center"> Our Mission</h1>
+                        <h1 className="text-3xl cinzel tracking-wider text-center yellow"> Our Mission</h1>
                         <div className="about-divider"></div>
                         <p className="poppins mt-5 w-8/12 text-center">To empower Information Technology students at the University of the East – Caloocan by providing resources, support, and opportunities that enhance their academic journey.</p>
                     </center>
@@ -74,17 +74,17 @@ const About = () => {
             <div className="" data-aos="fade-right" style={{ 'height': '70vh' }} >
                 <div className="poppins text-base" >
                     <center>
-                        <h1 className="text-3xl cinzel tracking-wider">Our Vision</h1>
+                        <h1 className="text-3xl cinzel tracking-wider yellow">Our Vision</h1>
                         <div className="about-divider"></div></center>
                     <div className="flex gap-10 mt-10 items-center">
                         <div className="w-6/12 rounded-2xl flex justify-evenly h-full gap-2">
                             <div >
                                 <Image src={vission1} alt="lits" className="about-image1 max-h-96 rounded-md object-cover object-center" priority={true}></Image>
                             </div>
-                            <div id="">
+                            <div>
                                 <Image src={vission2} alt="lits" style={{ 'height': '450px' }} className=" max-h-96 rounded-md object-cover object-right" priority={true}></Image>
                             </div>
-                            <div id="">
+                            <div>
                                 <Image src={vission3} alt="lits" className="about-image1 max-h-96 rounded-md object-cover object-center" priority={true}></Image>
                             </div>
                         </div>
@@ -106,7 +106,7 @@ const About = () => {
             <div className="flex items-center justify-center" data-aos="fade-up" style={{ 'height': '100vh' }}>
                 <div >
                     <center>
-                        <h1 className="text-3xl cinzel tracking-wider">Our Culture</h1>
+                        <h1 className="text-3xl cinzel tracking-wider yellow">Our Culture</h1>
                         <div className="about-divider"></div></center>
                     <p className="mt-5 poppins leading-7 text-center">We foster a supportive environment where everyone is encouraged to learn, grow, and contribute to the betterment of the IT community. We celebrate achievements, learn from our failures, and continuously strive for improvement. We are not just an organization; we are a community united by our passion for technology and our commitment to making a difference. As LITSmates, we uplift one another as we all grasp the hands of success.</p>
 

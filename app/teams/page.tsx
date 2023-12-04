@@ -32,7 +32,7 @@ const Teams = () => {
     return (
         <div className="mb-20">
             <div className="flex justify-center items-center" data-aos="fade-up" data-aos-duration="1000" style={{ 'height': '80vh' }}>
-                <div className="flex gap-10 text-15 text-justify">
+                <div className="flex gap-10 text-justify">
                     <div className="w-10/12">
                         <h1 className="text-3xl cinzel yellow text-left">Meet the Team</h1>
                     </div>

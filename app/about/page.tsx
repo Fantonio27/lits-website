@@ -21,9 +21,11 @@ import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 
 const About = () => {
+
     useEffect(() => {
         Aos.init()
     }, [])
+
     return (
         <div className="mt-20">
             <div className="" style={{ 'height': '90vh' }} data-aos="zoom-in-up" data-aos-duration="800">
@@ -39,9 +41,8 @@ const About = () => {
 
                 <div className="flex gap-2 mt-10">
                     <div>
-                        <Image src={about} alt="lits" className="about-image1 rounded-md object-cover about-picture" priority={true} ></Image>
+                        <Image src={about} alt="lits" className="about-image1 rounded-xl object-cover about-picture" priority={true} ></Image>
                     </div>
-
                 </div>
             </div>
 

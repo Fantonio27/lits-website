@@ -44,7 +44,7 @@ const faqs = () => {
         <div className="mt-16">
             <div className="flex gap-16 ">
                 <div className="w-6/12" data-aos="fade-left" data-aos-duration="1000">
-                    <h1 className="text-4xl cinzel yellow mb-3">Frequently asked questions</h1>
+                    <h1 className="text-3xl cinzel yellow mb-3">Frequently asked questions</h1>
                     <p className="poppins leading-7 text-justify">Explore our comprehensive FAQs to find quick and detailed answers to common questions, providing you with valuable insights and assistance on various topics related to our services. Streamline your experience by browsing through our frequently asked questions and enhance your understanding of our offerings </p>
                 </div>
 

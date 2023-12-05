@@ -12,14 +12,18 @@ import picture8 from "@/assets/team/President- 𝗝𝗼𝗵𝗻 𝗛𝘆𝗻𝗲
 import Image from "next/image"
 import dataset from "@/utils/datasets/dashboard.dataset"
 import { useState, useEffect } from "react"
+import { useRouter } from 'next/navigation'
+
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 
 const Teams = () => {
+    const navigate = useRouter()
+
     const data = dataset.team
 
     const [number, setNumber] = useState(8)
-    const pic = [picture1, picture2, picture3, picture4, picture5, picture6, picture7, picture8,picture6, picture7, picture8,]
+    const pic = [picture1, picture2, picture3, picture4, picture5, picture6, picture7, picture8, picture6, picture7, picture8,]
 
     useEffect(() => {
         Aos.init()
@@ -27,6 +31,10 @@ const Teams = () => {
 
     const onMore = () => {
         setNumber(prev => prev + 8)
+    }
+
+    const OnClick = (url: string) => {
+        navigate.push(`teams/${url}`)
     }
 
     return (
@@ -55,14 +63,19 @@ const Teams = () => {
                                     <div className="divider"></div>
                                     <p className="mt-3 poppins text-15 w-9/12">{value.description}</p>
                                 </div>
-                                <div className={`mt-10 grid gap-x-10 gap-y-5 grid-cols-${pic.length >= 4 ? '4' : String(pic.length)} w-max justify-items-center`}>
+                                <div className={`mt-10 grid gap-x-10 gap-y-5 ${pic.length >= 4 ? 'grid-cols-4' : `grid-cols-${String(pic.length)}`} w-max justify-items-center`}>
                                     {
                                         pic.slice(0, number).map((value, index) => {
-                                            const trans = (index < 4) || (index < 12 && index >= 8) 
+                                            const trans = (index < 4) || (index < 12 && index >= 8)
                                             return (
                                                 <div key={index} data-aos={trans ? `fade-left` : `fade-right`} data-aos-duration="1000">
-                                                    <Image src={value} alt="picture" className="rounded-lg object-cover object-center w-52 h-64 mb-1" />
-                                                    <p>cacasc</p>
+                                                    <div className="w-48 h-48 bg-black overflow-hidden rounded-full">
+                                                        <Image src={value} alt="picture"
+                                                            className=" object-cover object-center mb-1 cursor-pointer transition-all hover:scale-105"
+                                                            onClick={() => OnClick('haha')} />
+                                                    </div>
+                                                    {/* <Image src={value} alt="picture" className="rounded-lg object-cover object-center w-52 h-64 mb-1" /> */}
+                                                    <p className="cursor-pointer" onClick={() => OnClick('haha')}>cacasc</p>
                                                     <p className="text-15 yellow">Adviser</p>
                                                 </div>
                                             )

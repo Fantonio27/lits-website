@@ -1,20 +1,19 @@
 "use client"
 import Image from 'next/image'
-import Link from 'next/link'
 import Logo from '@/assets/litslogo.png'
 import '@/styles/navbar.css'
 
 import dataset from '@/utils/datasets/dashboard.dataset'
 import { getURL } from '@/utils/globalFunctions'
-import { useState, useEffect } from 'react'
-import { redirect } from 'next/navigation'
+import { useState} from 'react'
 import { useRouter } from 'next/navigation'
 
 const Navbar = () => {
     const navbarLinks = dataset.navbar;
     const navigate = useRouter()
 
-    const [link, setLink] = useState(getURL(1))
+    const activelink = getURL(2) == "teams" || getURL(2) == "events" ? getURL(2) : getURL(1)
+    const [link, setLink] = useState(activelink)
 
     const Riderect = (url : string) => {
         setLink(url)
@@ -29,7 +28,7 @@ const Navbar = () => {
             <div className="flex gap-10 h-max quicksand">
                 {
                     navbarLinks.map((value, index) => {
-                        const active = link == value.id
+                        const active = link == value.id || (link == "" && value.id == "/")
 
                         return (
                             <div className='navbar-button flex flex-col tracking-wider cursor-pointer' key={index} onClick={()=> Riderect(value.id)}>

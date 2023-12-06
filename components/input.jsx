@@ -1,8 +1,14 @@
 
-const input = () => {
+const input = ({ id, value, method, disabled }) => {
   return (
     <div>
-        <input type="text" className="input-style" />
+      <input
+        type="text"
+        className="input-style"
+        name={id}
+        value={value}
+        onChange={method}
+        disabled={disabled} />
     </div>
   )
 }

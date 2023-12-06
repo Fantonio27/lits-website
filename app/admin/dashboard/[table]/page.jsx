@@ -33,12 +33,12 @@ const page = () => {
         return location.href.split('/').at(-1);
     }
 
-    const data = dataset[url()]
+    const data = dataset[url(1)]
 
     return (
 
         <div className=''>
-            <Header Title={data.instructions} />
+            <Header Title={data.instructions} table={url(1)}/>
             <Table
                 column={data.fields}
                 row={Dataform}

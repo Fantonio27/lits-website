@@ -7,9 +7,9 @@ import Textarea from "@/components/textarea"
 import ImageFile from "@/components/image"
 import Optionbar from "@/components/optionBar";
 import Form from "@/components/layout/form"
+import Modal from "@/components/layout/modal"
 
 import dataset from "@/utils/datasets/admin.dataset"
-import { getURL } from "./globalFunctions";
 
 export {
     Navbar,
@@ -21,7 +21,7 @@ export {
     Input,
     Textarea,
     ImageFile,
+    Modal, 
     
     dataset,
-    getURL
 }

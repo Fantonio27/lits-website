@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/admin/dashboard/[table]/page.jsx", "components/optionBar.jsx", "components/layout/table.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/admin/dashboard/[table]/page.jsx", "components/optionBar.jsx", "components/layout/table.jsx", "components/comboBox.jsx", "components/layout/form.tsx", "components/layout/modal.jsx"],
   "exclude": ["node_modules"]
 }

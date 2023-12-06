@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react'
-import { Header, Table, dataset } from '@/utils'
+import { Header, Table, dataset} from '@/utils'
 import { Fetch } from '@/utils/teams/api'
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "@/utils/firebase";
@@ -36,11 +36,10 @@ const page = () => {
     const data = dataset[url(1)]
 
     return (
-
         <div className=''>
-            <Header Title={data.instructions} table={url(1)}/>
+            <Header Title={data? data.instructions: ''} table={url(1)}/>
             <Table
-                column={data.fields}
+                column={data? data.fields : []}
                 row={Dataform}
                 image={ImageList}
             />

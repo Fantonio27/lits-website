@@ -31,7 +31,7 @@ export async function PUT(request: Request) {
     const req = await request.json()
     await prisma.events.update({
         where: {
-            id: req._id,
+            id: req.id,
         },
         data: {
             name: req.name,
@@ -53,7 +53,7 @@ export async function DELETE(request: Request) {
     const req = await request.json()
     await prisma.events.delete({
         where: {
-            id: req._id,
+            id: req.id,
         }
     })
 

@@ -11,9 +11,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Modal = ({ open, instruction, cancel, submit, input, remove }) => {
+const Modal = ({ open, cancel, method, id}) => {
 
-    const [text, settext] = useState()
+    const deletecontent = {
+        title: `Delete this Record?`,
+        description: `Are you sure you want to delete this record (${id})`,
+    }
 
     return (
         <Dialog
@@ -21,17 +24,16 @@ const Modal = ({ open, instruction, cancel, submit, input, remove }) => {
             TransitionComponent={Transition}
             keepMounted
             fullWidth={true}
-            maxWidth={instruction.size}
         >
-            <DialogTitle><p className='SignOut-title'>{instruction.title}</p></DialogTitle>
+            <DialogTitle><p className='blue quicksand'>{deletecontent.title}</p></DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-slide-description">
-                    <span className='SignOut-text'>{instruction.description}</span>
+                    <span className='text-15 quicksand darkblue'>{deletecontent.description}</span>
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <button onClick={method} className='SignOut-cancel-button'>Cancel</button>
-                <button onClick={method} className='SignOut-confirm-button'>Confirm</button>
+                <button onClick={cancel} className='rounded-md mb-3 text-15 quicksand border transition-all hover:bg-gray-100 border-gray-300 px-5 py-2'>Cancel</button>
+                <button onClick={method} className='rounded-md  mb-3 mr-5 text-15 text-white quicksand bg-sky-500 px-5 py-2 transition-all hover:bg-sky-600'>Confirm</button>
             </DialogActions>
         </Dialog>
     )

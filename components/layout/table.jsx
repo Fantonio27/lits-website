@@ -3,14 +3,14 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "@/utils/firebase";
-import picture1 from "@/assets/team/1st Year Rep-𝗞𝗲𝗹𝗰𝗲𝘆 𝗖𝗿𝘂𝘇.jpg"
+
 import {
     Table, TableBody, TableCell, TableContainer, TableHead
     , TablePagination, TableRow, Grow
 } from '@mui/material';
 
-import { Optionbar } from '@/utils'
-import Image from 'next/image';
+import { Optionbar, Modal } from '@/utils'
+import { Delete, Update } from '@/utils/teams/api';
 
 export default function Data_Table(props) {
 
@@ -29,9 +29,6 @@ export default function Data_Table(props) {
     const [opendialog, setopendialog] = useState(false)
     const [id, setid] = useState(0)
 
-
-    // const field = subjects.includes(getUrl(1)) ? dataset.subjects.SearchList : dataset[getUrl(1)].SearchList
-
     const handleClickdelete = (id) => {
         setopendialog(true)
         setid(id)
@@ -42,7 +39,7 @@ export default function Data_Table(props) {
 
         if (id == "action") {
             return (
-                <Optionbar id={data._id} handleDelete={handleClickdelete} />
+                <Optionbar id={data.id} handleDelete={handleClickdelete} />
             )
         } else if (id == "avatar") {
             return <img src={props.image[data.id]} alt={value} className=' w-12 h-12 rounded-full bg-black mx-auto' />
@@ -53,7 +50,13 @@ export default function Data_Table(props) {
         }
     }
 
-    // console.log(ImageList)
+    const deleteRecord = async () => {
+        const dataform = {
+            "id": id
+        }
+        await Delete(dataform)
+        window.location.reload()
+    }
 
     return (
         <Grow in={true} timeout={600}>
@@ -136,8 +139,7 @@ export default function Data_Table(props) {
                         onRowsPerPageChange={handleChangeRowsPerPage}
                     />
                 </div>
-                {/* <button tton onClick={() => window.scrollTo(0, 0)}>top</button> */}
-                {props.Dialog}
+                <Modal open={opendialog} cancel={() => setopendialog(prev => !prev)} method={deleteRecord} id={id} />
             </div>
         </Grow >
     );

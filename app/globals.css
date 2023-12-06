@@ -60,6 +60,10 @@ body {
 }
 
 .blue{
-  color: #00A5E9;
+  color: rgb(0, 164, 235);
+}
+
+.input-style{
+  border: 1px solid #dee2e6;
 }
 

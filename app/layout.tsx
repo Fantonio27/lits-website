@@ -20,7 +20,6 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/icon.png" sizes="any" />
       <body className={inter.className}>
-        <Navbar />
         <Fade in={true} timeout={1000}>
           <div className='px-5 xl:px-52 lg:px-28 md:px-20 sm:px-12 overflow-auto'>
             <Toolbar />

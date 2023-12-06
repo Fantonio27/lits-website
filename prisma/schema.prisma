@@ -20,29 +20,41 @@ model contact {
 model events {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   name     String    
+  description   String
   date    String
   venue    String
-  time    String
-  description     String
-  image     String
-}
-
-model faqs {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  question     String    
-  answer    String
-}
-
-model pictures {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  name     String    
-  picture    String
+  startTime    String
+  endTime    String
+  poster     String
+  speaker    Speaker[]
+  partnership Partnership[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model teams {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   name     String    
   position    String
-  image     String
-  description     String
+  avatar     String
+  about     String
+  facebook     String
+  instagram     String
+  twitter     String
+  linkedin     String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+type Speaker {
+  name String
+  position String
+  avatar String
+}
+
+type Partnership {
+  name String
+  link String
+  logo String
 }

@@ -1,5 +1,5 @@
 const Header = (props: any) => {
-  const { Title, submit, method, table } = props
+  const { Title, submit, method, table, action} = props
   return (
     <div className='mb-5'>
       <div className='flex justify-between items-center'>
@@ -9,7 +9,7 @@ const Header = (props: any) => {
         </div>
         <div>
           {
-            submit ?
+            submit && method != "view" ?
               <div>
                 <button className='px-5 py-2 bg-sky-500 rounded-md  text-15 quicksand' onClick={submit}>Submit</button>
                 <a href={method == "create"? `../${table}`: `../../${table}`} className='px-5 py-2  rounded-md  text-15 quicksand'>Cancel</a>

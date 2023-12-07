@@ -1,13 +1,4 @@
 "use client"
-import picture1 from "@/assets/team/Adviser- Dr. Froilan E. De Guzman.jpg"
-import picture2 from "@/assets/team/1st Year Rep-𝗞𝗲𝗹𝗰𝗲𝘆 𝗖𝗿𝘂𝘇.jpg"
-import picture3 from "@/assets/team/2nd Year Rep-𝗔𝗻𝗻 𝗦𝗶𝗺𝗯𝘂𝗹𝗮𝗻.jpg"
-import picture4 from "@/assets/team/3rd Year Rep-𝗙𝗿𝗮𝗻𝗰𝗶𝘀 𝗛𝗼𝗽𝗲 𝗕𝗹𝗮𝗻𝗰𝗼.jpg"
-import picture5 from "@/assets/team/4th Year Rep- 𝗟𝗲𝗶𝗴𝗵 𝗛𝗼𝗽𝗲 𝗤𝘂𝗶𝗻𝘁𝗼𝗻 copy.jpg"
-import picture6 from "@/assets/team/Auditor- 𝗜𝘀𝗵 𝗥𝗮𝗺𝗶𝗿𝗲𝘇.jpg"
-import picture7 from "@/assets/team/Business Manager-I𝗮𝗻 𝗚𝗮𝘀𝗽𝗮𝗿.jpg"
-import picture8 from "@/assets/team/President- 𝗝𝗼𝗵𝗻 𝗛𝘆𝗻𝗲𝘀 𝗟𝗼𝗻𝗴𝗮𝗿𝗲𝘀.jpg"
-
 
 import Image from "next/image"
 import dataset from "@/utils/datasets/dashboard.dataset"
@@ -16,6 +7,9 @@ import { useRouter } from 'next/navigation'
 
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import { Fetch } from "@/utils/teams/api"
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "@/utils/firebase";
 
 const Teams = () => {
     const navigate = useRouter()
@@ -23,7 +17,6 @@ const Teams = () => {
     const data = dataset.team
 
     const [number, setNumber] = useState(8)
-    const pic = [picture1, picture2, picture3, picture4, picture5, picture6, picture7, picture8, picture6, picture7, picture8,]
 
     useEffect(() => {
         Aos.init()
@@ -37,6 +30,51 @@ const Teams = () => {
         navigate.push(`teams/${url}`)
     }
 
+    const [Dataform, setDataform] = useState([])
+    const [ImageList, setImageList] = useState([])
+
+    useEffect(() => {
+        async function Get() {
+            const res = await Fetch('teams')
+            getImage(res)
+            setDataform(res)
+        }
+
+        Get()
+    }, [])
+
+    const getImage = (response : any) => {
+        response.map((res : any)=>{
+            getDownloadURL(ref(storage, `teams/${res.avatar}`)).then((url) => {
+                setImageList((prev : any) => ({ ...prev, [res.id]: url }))
+            })
+        })
+    
+    }
+
+    const committee = [
+        'Committee - Communications',
+        'Committee - Creatives',
+        'Committee - Execitive',
+        'Committee - Multimedia',
+        'Committee - Technical',]
+
+    const officer = [
+        'Officer - 1st Year Representative',
+        'Officer - 2nd Year Representative',
+        'Officer - 3rd Year Representative',
+        'Officer - 4th Year Representative',
+        'Officer - Audito',
+        'Officer - Business Manager',
+        'Officer - President',
+        'Officer - PRO',
+        'Officer - Secretary',
+        'Officer - Treasurer',
+        'Officer - Vice Precident External',
+        'Officer - Vice Precident Internal'
+    ]
+
+    // console.log(Dataform.filter((data: any) => data.position == "Adviser").slice(0, number))
     return (
         <div className="mb-20">
             <div className="flex justify-center items-center" data-aos="fade-up" data-aos-duration="1000" style={{ 'height': '80vh' }}>
@@ -55,6 +93,7 @@ const Teams = () => {
 
             {
                 data.map((value, index) => {
+                    const filtered = Dataform.filter((data: any) => officer.includes(data.position) ? "Officers" == value.label : committee.includes(data.position) ? "Committee" == value.label : data.position == value.label)
                     return (
                         <div className=" mb-32 flex justify-center items-center" key={index}>
                             <center>
@@ -63,26 +102,27 @@ const Teams = () => {
                                     <div className="divider"></div>
                                     <p className="mt-3 poppins text-15 w-9/12">{value.description}</p>
                                 </div>
-                                <div className={`mt-10 grid gap-x-10 gap-y-5 ${pic.length >= 4 ? 'grid-cols-4' : `grid-cols-${String(pic.length)}`} w-max justify-items-center`}>
+                                <div className={`mt-10 grid gap-x-10 gap-y-5 ${filtered.length >= 4 ? 'grid-cols-4' : `grid-cols-${String(filtered.length)}`} w-max justify-items-center`}>
                                     {
-                                        pic.slice(0, number).map((value, index) => {
-                                            const trans = (index < 4) || (index < 12 && index >= 8)
-                                            return (
-                                                <div key={index} data-aos={trans ? `fade-left` : `fade-right`} data-aos-duration="1000">
-                                                    <div className="w-48 h-48 bg-black overflow-hidden rounded-full">
-                                                        <Image src={value} alt="picture"
-                                                            className=" object-cover object-center mb-1 cursor-pointer transition-all hover:scale-105"
-                                                            onClick={() => OnClick('haha')} />
+                                        filtered
+                                            .slice(0, number).map((value: any, index) => {
+                                                const trans = (index < 4) || (index < 12 && index >= 8)
+                                                return (
+                                                    <div key={index} data-aos={trans ? `fade-left` : `fade-right`} data-aos-duration="1000">
+                                                        <div className="w-48 h-48 bg-black overflow-hidden rounded-full">
+                                                            <img src={ImageList[value.id]} alt="picture"
+                                                                className=" object-cover object-center cursor-pointer transition-all hover:scale-105"
+                                                                onClick={() => OnClick(value.id)} />
+                                                        </div>
+
+                                                        <p className="cursor-pointer mt-3" onClick={() => OnClick(value.id)}>{value.name}</p>
+                                                        <p className="text-15 yellow">{value.position}</p>
                                                     </div>
-                                                    {/* <Image src={value} alt="picture" className="rounded-lg object-cover object-center w-52 h-64 mb-1" /> */}
-                                                    <p className="cursor-pointer" onClick={() => OnClick('haha')}>cacasc</p>
-                                                    <p className="text-15 yellow">Adviser</p>
-                                                </div>
-                                            )
-                                        })
+                                                )
+                                            })
                                     }
                                 </div>
-                                <button className={`${number >= pic.length && 'hidden'} mt-10 bg-sky-500 darkblue px-5 py-2 rounded-md hover:bg-sky-500/75 text-15 quicksand`} onClick={() => onMore()} >Load More</button>
+                                <button className={`${number >= filtered.length && 'hidden'} mt-10 bg-sky-500 darkblue px-5 py-2 rounded-md hover:bg-sky-500/75 text-15 quicksand`} onClick={() => onMore()} >Load More</button>
 
                             </center>
                         </div >

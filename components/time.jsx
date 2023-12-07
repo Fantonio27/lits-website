@@ -1,7 +1,14 @@
 
-const time = () => {
+const time = ({id, value, disabled, method}) => {
   return (
-    <div>time</div>
+    <div>
+      <input
+        type="time"
+        name={id}
+        value={value}
+        onChange={method}
+        className="input-style" />
+    </div>
   )
 }
 

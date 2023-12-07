@@ -1,8 +1,6 @@
 "use client"
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { ref, getDownloadURL } from "firebase/storage";
-import { storage } from "@/utils/firebase";
+import { useState } from 'react';
 
 import {
     Table, TableBody, TableCell, TableContainer, TableHead
@@ -34,12 +32,13 @@ export default function Data_Table(props) {
         setid(id)
     };
 
+
     function dataperrow(id, data) {
         const value = data[id];
 
         if (id == "action") {
             return (
-                <Optionbar id={data.id} handleDelete={handleClickdelete} />
+                <Optionbar id={data.id} handleDelete={handleClickdelete} table={props.table} />
             )
         } else if (id == "avatar") {
             return <img src={props.image[data.id]} alt={value} className=' w-12 h-12 rounded-full bg-black mx-auto' />
@@ -54,7 +53,7 @@ export default function Data_Table(props) {
         const dataform = {
             "id": id
         }
-        await Delete(dataform)
+        await Delete(dataform, props.table)
         window.location.reload()
     }
 

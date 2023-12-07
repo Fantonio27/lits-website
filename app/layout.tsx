@@ -21,10 +21,13 @@ export default function RootLayout({
       <link rel="icon" href="/icon.png" sizes="any" />
       <body className={inter.className}>
         <Fade in={true} timeout={1000}>
-          <div className='px-5 xl:px-52 lg:px-28 md:px-20 sm:px-12 overflow-auto'>
-            <Toolbar />
-            <Toolbar />
-            {children}
+          <div>
+            <Navbar />
+            <div className='px-5 xl:px-52 lg:px-28 md:px-20 sm:px-12 overflow-auto'>
+              <Toolbar />
+              <Toolbar />
+              {children}
+            </div>
           </div>
         </Fade>
       </body>

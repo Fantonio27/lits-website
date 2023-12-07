@@ -5,9 +5,12 @@ import ComboBox from "@/components/comboBox"
 import Input from "@/components/input"
 import Textarea from "@/components/textarea"
 import ImageFile from "@/components/image"
+import Date from "@/components/date"
+import Time from "@/components/time"
 import Optionbar from "@/components/optionBar";
 import Form from "@/components/layout/form"
 import Modal from "@/components/layout/modal"
+import Tab from "@/components/layout/tabs"
 
 import dataset from "@/utils/datasets/admin.dataset"
 
@@ -21,7 +24,10 @@ export {
     Input,
     Textarea,
     ImageFile,
-    Modal, 
+    Modal,
+    Date,
+    Time,
+    Tab,
     
     dataset,
 }

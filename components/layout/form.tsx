@@ -1,11 +1,10 @@
 "use client"
-import { Header, Input, Textarea, ComboBox, ImageFile } from '@/utils'
+import { Header, Input, Textarea, ComboBox, ImageFile, Date, Time,Tab } from '@/utils'
 import { useRouter } from 'next/navigation'
-import { ref, uploadBytes } from "firebase/storage"
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { storage } from "@/utils/firebase"
 import { useState, useEffect } from 'react'
-import { Create, Update, Fetch } from "@/utils/teams/api"
-import { Amiri_Quran } from 'next/font/google'
+import { Create, Update, Search} from "@/utils/teams/api"
 
 const form = ({ table, method, data }: {
     table: string,
@@ -16,18 +15,34 @@ const form = ({ table, method, data }: {
     const navigate = useRouter()
     const [Dataform, setDataform] = useState(data.dataform)
     const [avatar, setavatar] = useState<any>(null)
+    const [pastavatar, setPastavatar] = useState<any>(null)
+
+    const url = (num: number) => {
+        return location.href.split('/').at(-num);
+    }
 
     useEffect(() => {
-        async function Fetch() {
-            const res = await Fetch
-            setDataform(res)
+        async function Get() {
+            const res = await Search(url(1), table)
+            setDataform(res[0])
+            AvatarMap(res[0])
+        }
+
+        if (method == "edit" || method == "view") {
+            Get()
         }
 
     }, [])
 
+    const AvatarMap = (dataform: any) => {
+        getDownloadURL(ref(storage, `${table}/${dataform.avatar}`)).then((url) => {
+            setPastavatar(url)
+        })
+    }
+
     const OnChange = (event: any) => {
         const { name, value } = event.target
-        const picture = name == "avatar"
+        const picture = name == "avatar" 
 
         if (picture) {
             setavatar(event.target.files[0])
@@ -40,7 +55,7 @@ const form = ({ table, method, data }: {
     }
 
     const uploadImage = () => {
-        if (table == "teams") {
+        if (table == "teams" && avatar != null) {
             const imageRef = ref(storage, `teams/${Dataform.avatar}`)
             uploadBytes(imageRef, avatar).then(() => {
             })
@@ -48,15 +63,15 @@ const form = ({ table, method, data }: {
     }
 
     const Submit = async () => {
-        if (method == "create") {
-            await Create(Dataform)
+        if (method == "create") {         
+            await Create(Dataform, table)
             uploadImage()
+            navigate.push(`../${table}`)
         } else {
-            await Update(Dataform)
+            await Update(Dataform, table)
             uploadImage()
+            navigate.push(`../../${table}`)
         }
-
-        navigate.push(`../${table}`)
     }
 
     const inputType = (field: any) => {
@@ -72,7 +87,16 @@ const form = ({ table, method, data }: {
                 return <ComboBox id={field.id} value={Dataform[field.id]} method={OnChange} list={data.lists[field.id]} disabled={view} />
                 break;
             case 4:
-                return <ImageFile id={field.id} method={OnChange} disabled={view} value={avatar} table={table}/>
+                return <ImageFile id={field.id} method={OnChange} disabled={view} value={avatar} action={method} pastvalue={pastavatar} />
+                break;
+            case 5:
+                return <Date id={field.id} method={OnChange} disabled={view} value={avatar}/>
+                break;
+            case 6:
+                return <Time id={field.id} method={OnChange} disabled={view} value={avatar}/>
+                break;
+            case 7: 
+                return <Tab />
                 break;
         }
     }

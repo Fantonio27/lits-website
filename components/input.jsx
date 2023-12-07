@@ -6,7 +6,7 @@ const input = ({ id, value, method, disabled }) => {
         type="text"
         className="input-style"
         name={id}
-        value={value}
+        value={value || ""}
         onChange={method}
         disabled={disabled} />
     </div>

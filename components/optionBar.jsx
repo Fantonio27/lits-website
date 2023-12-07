@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const menuitem_sx = {
     display: 'flex',
@@ -24,7 +25,7 @@ const menuitem_sx = {
     }
 }
 
-export default function Optionbar({ id , handleDelete}) {
+export default function Optionbar({ id, handleDelete, table }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const openaction = Boolean(anchorEl);
 
@@ -36,11 +37,11 @@ export default function Optionbar({ id , handleDelete}) {
         setAnchorEl(null);
     };
 
-    const handleClickdelete = () => {  
+    const handleClickdelete = () => {
         handleDelete(id)
         setAnchorEl(null);
     };
-    
+
     return (
         <>
             <material.IconButton onClick={handleClickAction()}>
@@ -62,7 +63,15 @@ export default function Optionbar({ id , handleDelete}) {
                     }
                 }}
             >
-                <a href={`Edit/${id}`} style={{ textDecoration: "none" }}>
+                <a href={`${table}/view/${id}`} style={{ textDecoration: "none" }}>
+                    <span style={{ color: '#252a35' }}>
+                        <MenuItem sx={menuitem_sx} onClick={handleCloseAction}>
+                            <VisibilityIcon sx={{ fontSize: "19px" }} />
+                            <p className="text-gray-800 quicksand">View</p>
+                        </MenuItem>
+                    </span>
+                </a>
+                <a href={`${table}/edit/${id}`} style={{ textDecoration: "none" }}>
                     <span style={{ color: '#252a35' }}>
                         <MenuItem sx={menuitem_sx} onClick={handleCloseAction}>
                             <EditRoundedIcon sx={{ fontSize: "19px" }} />
@@ -73,7 +82,7 @@ export default function Optionbar({ id , handleDelete}) {
                 <span style={{ color: '#db514cff' }}>
                     <MenuItem sx={menuitem_sx} onClick={handleClickdelete}>
                         <DeleteRoundedIcon sx={{ fontSize: "19px" }} />
-                        <p className="text-gray-800 quicksand">Delete</p> 
+                        <p className="text-gray-800 quicksand">Delete</p>
                     </MenuItem>
                 </span>
             </Menu>

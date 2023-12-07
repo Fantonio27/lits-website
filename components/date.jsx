@@ -1,8 +1,15 @@
 
 
-const date = () => {
+const date = ({id, value, disabled, method}) => {
   return (
-    <div>date</div>
+    <div>
+      <input
+        type="date"
+        name={id}
+        value={value}
+        onChange={method}
+        className="input-style" />
+    </div>
   )
 }
 

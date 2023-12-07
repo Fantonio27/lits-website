@@ -10,6 +10,7 @@ const combo_sx = {
 }
 
 const ComboBox = ({ id, value, method, list, disabled}) => {
+
     return (
         <FormControl size="small" sx={{ width: '100%'}}>
             <Select

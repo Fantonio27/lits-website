@@ -2,13 +2,13 @@ export default {
     teams: {
         instructions: {
             id: "team",
-            title: "Team Table",
+            title: "Teams Table",
             buttonText: "Team",
-            text: "View all the records of Team",
+            text: "View all the records of Record",
         },
         fields: [
-            { id: 'avatar', label: 'Avatar', align: 'center', borderRadius: "12px 0px 0px"},
-            { id: 'id', label: 'ID'},
+            { id: 'avatar', label: 'Avatar', align: 'center', borderRadius: "12px 0px 0px" },
+            { id: 'id', label: 'ID' },
             { id: 'name', label: 'Fullname' },
             { id: 'position', label: 'Position' },
             { id: 'email', label: 'Email Address' },
@@ -20,10 +20,10 @@ export default {
             { id: "position", title: "Position", text: "", type: 3 },
             { id: "email", title: "Email Address", text: "", type: 1 },
             { id: "about", title: "Bio (optional)", text: "", type: 2 },
-            { id: "facebook", title: "Facebook (optional)", text: "", type: 1 },
-            { id: "instagram", title: "Instagram (optional)", text: "", type: 1 },
-            { id: "twitter", title: "Twitter (optional)", text: "", type: 1 },
-            { id: "linkedin", title: "Linked In (optional)", text: "", type: 1 },
+            { id: "facebook", title: "Facebook Link(optional)", text: "", type: 1 },
+            { id: "instagram", title: "Instagram Link(optional)", text: "", type: 1 },
+            { id: "twitter", title: "Twitter Link(optional)", text: "", type: 1 },
+            { id: "linkedin", title: "Linked In Link(optional)", text: "", type: 1 },
         ],
         lists: {
             position: [
@@ -58,12 +58,52 @@ export default {
             "linkedin": "",
             "email": ""
         },
-        SearchList: [
-            { id: 'All', label: 'All' },
-            { id: 'lrn', label: 'LRN' },
-            { id: 'firstname', label: 'FirstName' },
-            { id: 'lastname', label: 'LastName' },
-            { id: 'section', label: 'Section' },
-        ]
+    },
+
+    events: {
+        instructions: {
+            id: "event",
+            title: "Events Table",
+            buttonText: "Event",
+            text: "View all the records of Event Record",
+        },
+        fields: [
+            { id: 'poster', label: 'Poster', align: 'center', borderRadius: "12px 0px 0px" },
+            { id: 'name', label: 'Event Name' },
+            { id: 'date', label: 'Date' },
+            { id: 'venue', label: 'Venue' },
+            { id: 'action', label: 'Action', align: 'center', borderRadius: "0px 12px 0px 0px" }
+        ],
+        forms: [
+            { id: "poster", title: "Poster", type: 4 },
+            { id: "name", title: "Event Name", type: 1 },
+            { id: "description", title: "Description", type: 2 },
+            { id: "date", title: "Date", type: 5 },
+            { id: "venue", title: "Venue", type: 1 },
+            { id: "startTime", title: "Start Time", type: 6 },
+            { id: "endTime", title: "End Time", type: 6 },
+            { id: "speaker", title: "Speaker", type: 7 },
+            { id: "partnership", title: "Partnership", type: 7 },
+        ],
+        lists: {
+            position: [
+            
+            ],
+        },
+        dataform: {
+            "name": "",
+            "description": "",
+            "date": "",
+            "venue": "",
+            "startTime": "",
+            "endTime": "",
+            "poster": "",
+            "speaker": [
+                // { "name": "", "position": "", "avatar": "" }
+            ],
+            "partnership": [
+                // { "name": "", "link": "", "logo": "" }
+            ]
+        },
     },
 }

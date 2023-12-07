@@ -4,15 +4,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function GET() {
-    // const req = await request.json()
-    // const alldata = await prisma.teams.findMany(
-    //         {
-    //             where: {
-    //                 id: "6570c080a07eb2727aae98d1"
-    //             }
-    //         }
-    //     )
-    const alldata = await prisma.teams.findMany()
+    const alldata = await prisma.teams.findMany({})
 
     return NextResponse.json(alldata)
 }
